@@ -1,10 +1,12 @@
-import React from "react";
+import React from 'react';
+import Sprite from './components/sprite';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <div className='App'>
+      <Sprite />
     </div>
   );
-}
+};
 
 export default App;
