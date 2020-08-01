@@ -1,11 +1,14 @@
-import React from 'react';
-import Sprite from './components/sprite';
+import React from "react";
+import Sprite from "./components/sprite";
 
 const App = () => {
   return (
-    <div className='App'>
-      <Sprite />
-    </div>
+    <>
+      <Sprite
+        spriteSrc={"/sprites/lanto2.png"}
+        data={{ w: 32, h: 32, x: 0, y: 0 }}
+      />
+    </>
   );
 };
 

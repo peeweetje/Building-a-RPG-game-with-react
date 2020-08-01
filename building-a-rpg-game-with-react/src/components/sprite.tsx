@@ -1,18 +1,39 @@
-import React from 'react';
-import styled from 'styled-components';
-import spriteSrc from '../sprites/lanto2.png';
+import React, { FC } from "react";
+import styled from "styled-components";
 
-const Sprite = () => {
-  return <ContainerDiv></ContainerDiv>;
+type spriteProps = {
+  data: any;
+  spriteSrc: string;
+};
+
+const Sprite: FC<spriteProps> = ({ data, spriteSrc }) => {
+  const { y, x, w, h } = data;
+
+  return <ContainerDiv
+    spriteSrc={spriteSrc}
+    width={w}
+    height={h}
+    xAxis={x}
+    yAxis={y}
+  >
+  </ContainerDiv>;
 };
 
 export default Sprite;
 
-const ContainerDiv = styled.div`
+const ContainerDiv = styled.div<
+  {
+    height: number;
+    width: number;
+    xAxis: number;
+    yAxis: number;
+    spriteSrc: string;
+  }
+>`
   display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  background-image: url(${spriteSrc});
+  height: ${(props) => (props.height)}px;
+  width: ${(props) => (props.width)}px;
+  background-image: url(${(props) => props.spriteSrc});
   background-repeat: no-repeat;
-  background-position: 0rem 0rem;
+  background-position: ${(props) => `-${props.xAxis}px -${props.yAxis}px`};
 `;
