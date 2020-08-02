@@ -4,9 +4,10 @@ import styled from "styled-components";
 type spriteProps = {
   data: any;
   spriteSrc: string;
+  position?: any;
 };
 
-const Sprite: FC<spriteProps> = ({ data, spriteSrc }) => {
+const Sprite: FC<spriteProps> = ({ data, spriteSrc, position }) => {
   const { y, x, w, h } = data;
 
   return <ContainerDiv
@@ -15,6 +16,7 @@ const Sprite: FC<spriteProps> = ({ data, spriteSrc }) => {
     height={h}
     xAxis={x}
     yAxis={y}
+    position={position}
   >
   </ContainerDiv>;
 };
@@ -27,10 +29,13 @@ const ContainerDiv = styled.div<
     width: number;
     xAxis: number;
     yAxis: number;
+    position: { x: number; y: number };
     spriteSrc: string;
   }
 >`
-  display: inline-block;
+  position: absolute;
+  top:${(props) => (props.position.y)}px;;
+  left: ${(props) => (props.position.x)}px;;
   height: ${(props) => (props.height)}px;
   width: ${(props) => (props.width)}px;
   background-image: url(${(props) => props.spriteSrc});
