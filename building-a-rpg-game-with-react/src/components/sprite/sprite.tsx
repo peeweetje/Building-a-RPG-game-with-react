@@ -3,8 +3,17 @@ import styled from "styled-components";
 
 type spriteProps = {
   data: any;
-  spriteSrc: string;
-  position?: any;
+  spriteSrc?: string;
+  position: { x: number; y: number };
+};
+
+type changedProps = {
+  height: number;
+  width: number;
+  xAxis: number;
+  yAxis: number;
+  position: { x: number; y: number };
+  spriteSrc?: string;
 };
 
 const Sprite: FC<spriteProps> = ({ data, spriteSrc, position }) => {
@@ -23,22 +32,16 @@ const Sprite: FC<spriteProps> = ({ data, spriteSrc, position }) => {
 
 export default Sprite;
 
-const ContainerDiv = styled.div<
-  {
-    height: number;
-    width: number;
-    xAxis: number;
-    yAxis: number;
-    position: { x: number; y: number };
-    spriteSrc: string;
-  }
->`
-  position: absolute;
-  top:${(props) => (props.position.y)}px;;
-  left: ${(props) => (props.position.x)}px;;
-  height: ${(props) => (props.height)}px;
-  width: ${(props) => (props.width)}px;
-  background-image: url(${(props) => props.spriteSrc});
-  background-repeat: no-repeat;
-  background-position: ${(props) => `-${props.xAxis}px -${props.yAxis}px`};
+const ContainerDiv = styled.div.attrs<changedProps>((props) => ({
+  style: {
+    height: props.height,
+    top: props.position.y,
+    left: props.position.x,
+    width: props.width,
+    backgroundImage: `url(${props.spriteSrc})`,
+    backgroundPosition: `-${props.xAxis} -${props.yAxis}`,
+  },
+}))<changedProps>`
+background-repeat: no-repeat;
+position: absolute;
 `;

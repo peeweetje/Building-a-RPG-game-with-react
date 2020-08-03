@@ -7,7 +7,7 @@ type actorProps = {
   step: number;
   direction?: number;
   dir: any;
-  position?: any;
+  position: { x: number; y: number };
 };
 
 const Actor: FC<actorProps> = (
