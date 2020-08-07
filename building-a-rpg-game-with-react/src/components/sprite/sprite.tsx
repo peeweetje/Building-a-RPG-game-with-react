@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import styled from "styled-components";
+import React, { FC } from 'react';
+import styled from 'styled-components';
 
 type spriteProps = {
   data: any;
@@ -19,15 +19,16 @@ type changedProps = {
 const Sprite: FC<spriteProps> = ({ data, spriteSrc, position }) => {
   const { y, x, w, h } = data;
 
-  return <ContainerDiv
-    spriteSrc={spriteSrc}
-    width={w}
-    height={h}
-    xAxis={x}
-    yAxis={y}
-    position={position}
-  >
-  </ContainerDiv>;
+  return (
+    <ContainerDiv
+      spriteSrc={spriteSrc}
+      width={w}
+      height={h}
+      xAxis={x}
+      yAxis={y}
+      position={position}
+    ></ContainerDiv>
+  );
 };
 
 export default Sprite;
@@ -39,9 +40,9 @@ const ContainerDiv = styled.div.attrs<changedProps>((props) => ({
     left: props.position.x,
     width: props.width,
     backgroundImage: `url(${props.spriteSrc})`,
-    backgroundPosition: `-${props.xAxis} -${props.yAxis}`,
+    backgroundPosition: `-${props.xAxis}px -${props.yAxis}px`,
   },
 }))<changedProps>`
-background-repeat: no-repeat;
-position: absolute;
+  background-repeat: no-repeat;
+  position: absolute;
 `;

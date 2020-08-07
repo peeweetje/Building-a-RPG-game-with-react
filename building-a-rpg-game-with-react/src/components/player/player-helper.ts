@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export default function useKeyPress(fn: any) {
   useEffect(() => {
-    window.addEventListener("keydown", fn);
-    return () => window.removeEventListener("keydown", fn);
+    window.addEventListener('keydown', fn);
+    return () => window.removeEventListener('keydown', fn);
   }, [fn]);
 }
 
 export function useWalk(maxSteps: number) {
-  const [position, setPosition] = useState<{ x: number; y: number }>(
-    { x: 0, y: 16 },
-  );
+  const [position, setPosition] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
   const [dir, setDir] = useState(0);
   const [step, setStep] = useState(0);
   const directions: Record<string, number> = {
@@ -35,7 +36,8 @@ export function useWalk(maxSteps: number) {
       if (directions[dir] === prev) move(dir);
       return directions[dir];
     });
-    setStep((prev) => prev < maxSteps - 1 ? prev + 1 : 0);
+
+    setStep((prev) => (prev < maxSteps - 1 ? prev + 1 : 0));
   }
 
   function move(dir: number) {

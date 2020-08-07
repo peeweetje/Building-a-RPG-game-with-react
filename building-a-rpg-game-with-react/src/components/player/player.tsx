@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import useKeyPress from "./player-helper";
-import { useWalk } from "./player-helper";
-import Actor from "../actor/actor";
+import React, { FC } from 'react';
+import useKeyPress from './player-helper';
+import { useWalk } from './player-helper';
+import Actor from '../actor/actor';
 
 type playerProps = {
   spriteNr: string;
@@ -12,7 +12,7 @@ const Player: FC<playerProps> = ({ spriteNr }) => {
   const data = { w: 32, h: 32 };
 
   useKeyPress((e: any) => {
-    walk(e.key.replace("Arrow", "").toLowerCase());
+    walk(e.key.replace('Arrow', '').toLowerCase());
 
     e.preventDefault();
   });
