@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 
 type spriteProps = {
-  data: any;
+  data: Record<string, number>;
   spriteSrc?: string;
   position: { x: number; y: number };
 };

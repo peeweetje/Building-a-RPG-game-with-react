@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Sprite from '../sprite/sprite';
 
 type actorProps = {
-  data: any;
+  data: Record<string, number>;
   spriteSrc: string;
   step: number;
   direction?: number;
