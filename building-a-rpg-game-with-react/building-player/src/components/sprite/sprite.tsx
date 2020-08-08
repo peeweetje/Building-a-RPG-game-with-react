@@ -7,7 +7,7 @@ type spriteProps = {
   position: { x: number; y: number };
 };
 
-type changedProps = {
+type styledProps = {
   height: number;
   width: number;
   xAxis: number;
@@ -33,7 +33,7 @@ const Sprite: FC<spriteProps> = ({ data, spriteSrc, position }) => {
 
 export default Sprite;
 
-const ContainerDiv = styled.div.attrs<changedProps>((props) => ({
+const ContainerDiv = styled.div.attrs<styledProps>((props) => ({
   style: {
     height: props.height,
     top: props.position.y,
@@ -42,7 +42,7 @@ const ContainerDiv = styled.div.attrs<changedProps>((props) => ({
     backgroundImage: `url(${props.spriteSrc})`,
     backgroundPosition: `-${props.xAxis}px -${props.yAxis}px`,
   },
-}))<changedProps>`
+}))<styledProps>`
   background-repeat: no-repeat;
   position: absolute;
 `;
