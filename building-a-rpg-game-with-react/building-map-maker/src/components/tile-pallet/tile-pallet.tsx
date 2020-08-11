@@ -4,15 +4,16 @@ import styles from 'styled-components';
 type styledToolBarProps = {
   position: { x: number; y: number };
   size: { width: number; height: number };
+  tileSet: string;
 };
 
 type styledTileProps = {
-  spriteSrc: string;
   x: number;
   y: number;
+  tileSet: string;
 };
 
-const TilePallet: FC<styledToolBarProps> = ({ position, size }) => {
+const TilePallet: FC<styledToolBarProps> = ({ tileSet, position, size }) => {
   const { width, height } = size;
   const tiles = [];
   let id = 0;
@@ -30,17 +31,12 @@ const TilePallet: FC<styledToolBarProps> = ({ position, size }) => {
   }
 
   return (
-    <ToolbarDiv size={size} position={position} id='pallet'>
+    <ToolbarDiv tileSet={tileSet} size={size} position={position} id='pallet'>
       <img id='handle' src='/images/drag-handle.png' alt='drag-handle' />
       {tiles.map((row, y) => (
         <RowStyling key={y}>
           {row.map((row, x) => (
-            <TileStyling
-              key={x}
-              x={x}
-              y={y}
-              spriteSrc={'/sprites/rpg-nature-tileset/spring.png'}
-            />
+            <TileStyling key={x} x={x} y={y} tileSet={tileSet} />
           ))}
         </RowStyling>
       ))}
@@ -68,7 +64,7 @@ display: flex;
 
 const TileStyling = styles.div.attrs<styledTileProps>((props) => ({
   style: {
-    background: `url(${props.spriteSrc}) -${props.x * 32}px -${
+    background: `url(${props.tileSet}.png) -${props.x * 32}px -${
       props.y * 32
     }px no-repeat`,
   },
