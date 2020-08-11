@@ -29,9 +29,9 @@ const MapBuilder: React.FC<mapProps> = (
   return (
     <MapStyling size={size}>
       {tiles.map((row: any[], y: number) =>
-        <TileStyling>
+        <TileStyling key={y}>
           {row.map((tile: number, x: number) =>
-            <TilesStyling tile={tile} tileset={tileset}></TilesStyling>
+            <TilesStyling key={x} tile={tile} tileset={tileset}></TilesStyling>
           )}
         </TileStyling>
       )}
